@@ -1,0 +1,4 @@
+docker stop test --> stops a container
+docker system prune -af --volumes --> delete all the containers
+docker run -d -p 443:443 --name test nginx --> run an image
+docker build -t nginx . --> build an image
