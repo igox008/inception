@@ -8,4 +8,4 @@ RUN chmod +x /tmp/script.sh
 
 ENTRYPOINT [ "./tmp/script.sh" ]
 
-CMD [ "mariadb" , "-u", "root", "-p"]
+CMD ["mariadbd"]
