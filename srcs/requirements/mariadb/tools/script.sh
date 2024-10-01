@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# sed -i "s|# port = 3306|port = 3306|1" /etc/mysql/mariadb.cnf
-# sed -i "s/127.0.0.1/0.0.0.0/1" /etc/mysql/mariadb.conf.d/50-server.cnf
-
 
 service mariadb start
 
 sleep 5
 
-	mysqladmin -u root password "${MYSQLROOTPASSWORD}"
-	mysql -e "CREATE DATABASE IF NOT EXISTS \`${MYSQLDB}\`;"
-	mysql -e "CREATE USER IF NOT EXISTS \`${MSQLUSER}\`@'%' IDENTIFIED BY '${MYSQLPASSWORD}';"
-	mysql -e "GRANT ALL PRIVILEGES ON ${MYSQLDB}.* TO \`${MSQLUSER}\`@'%' IDENTIFIED BY '${MYSQLPASSWORD}' ;"
+	mysqladmin -u root password "${DB_ROOT_PASSWORD}"
+	mysql -e "CREATE DATABASE IF NOT EXISTS \`${DATABASE_NAME}\`;"
+	mysql -e "CREATE USER IF NOT EXISTS \`${WP_ADMIN_USER}\`@'%' IDENTIFIED BY '${WP_ADMIN_PASSWORD}';"
+	mysql -e "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO \`${WP_ADMIN_USER}\`@'%' IDENTIFIED BY '${WP_ADMIN_PASSWORD}' ;"
 	mysql -e "FLUSH PRIVILEGES;"
 service mariadb stop
 
