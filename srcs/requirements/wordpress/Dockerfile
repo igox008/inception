@@ -1,10 +1,12 @@
 FROM debian:bullseye
-
-RUN apt update
-RUN apt install php php-fpm php-mysql unzip curl wget -y
+ 
+RUN apt update -y && apt install -y php php-fpm php-mysql unzip curl wget 
 
 COPY ./tools/wordpress.sh /tmp/
+
 RUN chmod +x /tmp/wordpress.sh
+
+RUN mkdir -p /run/php
 
 ENTRYPOINT ["./tmp/wordpress.sh"]
 

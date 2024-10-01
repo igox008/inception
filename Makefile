@@ -1,6 +1,9 @@
 all :
-	@echo "nothing done yet here!!"
-
+	@echo "still need change volumes path..."
+	@mkdir ~/Desktop/data/mariadb
+	@mkdir ~/Desktop/data/wordpress
+	@rm -rf mariadb/* wordpress/*
+	@docker compose -f srcs/docker-compose.yml up --build
 nginx :
 	docker build -t nginx ./srcs/requirements/nginx
 	docker run -d -p 443:443 --name test nginx

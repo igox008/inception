@@ -1,12 +1,12 @@
 FROM debian:bullseye
 
-RUN apt update && apt install -y mariadb-server python3
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
 
-COPY ./tools/script.sh /tmp/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./tools/script.sh /script.sh
 
-RUN chmod +x /tmp/script.sh
+RUN chmod +x /script.sh
 
-ENTRYPOINT [ "./tmp/script.sh" ]
-
-CMD ["mariadbd"]
-# CMD ["./tmp/script.sh"]
+ENTRYPOINT [ "./script.sh" ]

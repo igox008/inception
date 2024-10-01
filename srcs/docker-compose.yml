@@ -7,6 +7,8 @@ services:
       context: ./requirements/nginx
     ports:
       - "443:443"
+    volumes:
+      - wordpress:/var/www/html
     networks:
       - database
     depends_on:
@@ -17,6 +19,10 @@ services:
     container_name: mariadb
     build:
       context: ./requirements/mariadb
+    env_file:
+      - .env
+    volumes:
+      - mariadb:/var/lib/mysql
     networks:
       - database
     restart: on-failure
@@ -25,11 +31,29 @@ services:
     container_name: wordpress
     build:
       context: ./requirements/wordpress
+    env_file:
+      - .env
+    volumes:
+      - wordpress:/var/www/html
     depends_on:
       - mariadb
     networks:
       - database
     restart: always
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/alaassir/Desktop/data/wordpress
+      o: bind
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/alaassir/Desktop/data/mariadb
+      o: bind
 
 networks:
   database:
