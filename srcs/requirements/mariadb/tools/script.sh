@@ -2,7 +2,6 @@
 
 
 service mariadb start
-
 sleep 5
 
 	mysqladmin -u root password "${DB_ROOT_PASSWORD}"
@@ -12,10 +11,4 @@ sleep 5
 	mysql -e "FLUSH PRIVILEGES;"
 service mariadb stop
 
-
-exec mysqld_safe 
-
-
-# while true; do
-#     sleep 1
-# done
+exec "$@"
