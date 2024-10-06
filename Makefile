@@ -5,7 +5,7 @@ all :
 	@mkdir -p ~/Desktop/data/mariadb
 	@mkdir -p ~/Desktop/data/wordpress
 	@rm -rf mariadb/* wordpress/*
-	@docker compose -f srcs/docker-compose.yml up --build
+	@docker compose -f ./srcs/docker-compose.yml up --build
 nginx :
 	docker build -t nginx ./srcs/requirements/nginx
 	docker run -d -p 443:443 --name test nginx
