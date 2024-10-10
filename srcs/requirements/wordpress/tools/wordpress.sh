@@ -18,5 +18,9 @@ wp config create --dbname=$DATABASE_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD
 wp core install --url=$DOMAINE_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_email=$WP_ADMIN_EMAIL --admin_password=$WP_ADMIN_PASSWORD --skip-email --allow-root
 wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASSWORD --allow-root
 
+wp plugin install redis-cache --activate --allow-root
+wp config set WP_REDIS_HOST $REDIS_HOST --raw --allow-root
+wp config set WP_REDIS_PORT $REDIS_PORT --raw --allow-root
+wp redis enable --allow-root
 
 exec $@

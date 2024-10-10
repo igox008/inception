@@ -1,6 +1,6 @@
 FROM debian:bullseye
  
-RUN apt update -y && apt install -y php php-fpm php-mysql unzip curl wget 
+RUN apt update -y && apt install -y php php-fpm php-mysql curl
 
 COPY ./tools/wordpress.sh /tmp/
 
