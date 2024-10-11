@@ -77,6 +77,20 @@ services:
     networks :
       - igo_net
     restart : on-failure
+  website :
+    container_name : website
+    build :
+      ./requirements/bonus/website
+    ports:
+      - "8000:8000"
+    env_file :
+      - .env
+    volumes :
+      - wordpress:/var/www/html
+    networks :
+      - igo_net
+    restart : on-failure
+
 
 volumes:
   wordpress:
