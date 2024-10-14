@@ -8,6 +8,4 @@ COPY ./tools/script.sh /
 
 RUN chmod +x script.sh
 
-RUN mkdir -p /var/www/html/website
-
-ENTRYPOINT [ "./script.sh" ]
+CMD [ "./script.sh" ]
