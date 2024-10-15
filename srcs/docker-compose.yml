@@ -93,16 +93,34 @@ services:
       - igo_net
     restart : on-failure
   grafana:
-    container_name : grafana
+    container_name: grafana
     build:
       context: ./requirements/bonus/grafana
-    env_file :
-      - .env
     ports:
       - "3000:3000"
-      - "9090:9090"
+    env_file :
+      - .env
+    volumes:
+      - grafana_data:/var/lib/grafana
     networks:
       - igo_net
+    depends_on:
+      - prometheus
+    restart: always
+
+  prometheus:
+    container_name: prometheus
+    build:
+      context: ./requirements/bonus/prometheus
+    ports:
+      - "9090:9090"
+    env_file :
+      - .env
+    volumes:
+      - prometheus_data:/var/lib/prometheus
+    networks:
+      - igo_net
+    restart: always
 
 volumes:
   wordpress:
@@ -117,6 +135,11 @@ volumes:
       type: none
       device: /home/igo/data/mariadb
       o: bind
+  grafana_data:
+    driver: local
+  prometheus_data:
+    driver: local
+
 
 networks:
   igo_net:
