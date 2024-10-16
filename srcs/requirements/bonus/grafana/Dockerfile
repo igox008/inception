@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y grafana \
     && rm -rf /var/lib/apt/lists/*
 
+COPY ./provisioning/datasources /etc/grafana/provisioning/datasources
+
 EXPOSE 3000
 
 CMD ["/usr/sbin/grafana-server", "--homepath=/usr/share/grafana"]

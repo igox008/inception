@@ -4,11 +4,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     tar
 
-RUN useradd --no-create-home --shell /bin/false prometheus
+# RUN useradd --no-create-home --shell /bin/false prometheus
 
 RUN mkdir -p /etc/prometheus /var/lib/prometheus
 
-RUN chown prometheus:prometheus /etc/prometheus /var/lib/prometheus
+# RUN chown prometheus:prometheus /etc/prometheus /var/lib/prometheus
 
 RUN wget https://github.com/prometheus/prometheus/releases/download/v2.54.1/prometheus-2.54.1.linux-amd64.tar.gz \
     && tar -xzf prometheus-2.54.1.linux-amd64.tar.gz \
@@ -20,7 +20,7 @@ RUN wget https://github.com/prometheus/prometheus/releases/download/v2.54.1/prom
 
 EXPOSE 9090
 
-USER prometheus
+# USER prometheus
 
 WORKDIR /etc/prometheus
 

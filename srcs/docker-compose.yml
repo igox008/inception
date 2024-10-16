@@ -121,7 +121,20 @@ services:
     networks:
       - igo_net
     restart: always
-
+  cadvisor:
+    container_name: cadvisor
+    build:
+      context: ./requirements/bonus/cadvisor
+    ports:
+      - "8081:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - igo_net
+    restart: always
 volumes:
   wordpress:
     driver: local
@@ -139,7 +152,6 @@ volumes:
     driver: local
   prometheus_data:
     driver: local
-
 
 networks:
   igo_net:
