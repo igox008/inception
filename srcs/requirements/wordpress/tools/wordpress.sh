@@ -6,7 +6,6 @@ mkdir -p $HTML_FOLDER
 
 sed -i "s/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/" /etc/php/7.4/fpm/pool.d/www.conf
 cd $HTML_FOLDER
-# rm -rf *
 sleep 10
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 

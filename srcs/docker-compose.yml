@@ -92,46 +92,18 @@ services:
     networks :
       - igo_net
     restart : on-failure
-  grafana:
-    container_name: grafana
-    build:
-      context: ./requirements/bonus/grafana
-    ports:
-      - "3000:3000"
-    env_file :
-      - .env
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - igo_net
-    depends_on:
-      - prometheus
-    restart: always
-
-  prometheus:
-    container_name: prometheus
-    build:
-      context: ./requirements/bonus/prometheus
-    ports:
-      - "9090:9090"
-    env_file :
-      - .env
-    volumes:
-      - prometheus_data:/var/lib/prometheus
-    networks:
-      - igo_net
-    restart: always
   cadvisor:
     container_name: cadvisor
     build:
       context: ./requirements/bonus/cadvisor
-    ports:
-      - "8081:8080"
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:rw
+      - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - "8090:8090"
     networks:
       - igo_net
     restart: always
@@ -148,10 +120,6 @@ volumes:
       type: none
       device: /home/igo/data/mariadb
       o: bind
-  grafana_data:
-    driver: local
-  prometheus_data:
-    driver: local
 
 networks:
   igo_net:
