@@ -24,7 +24,7 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - igo_net
-    restart: on-failure
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -49,12 +49,12 @@ services:
       - wordpress:/home/${FTP_USER}/wordpress
     ports:
       - "21:21"
-      - "21100-21110:21100-21110"
+      - "21100-21200:21100-21200"
     depends_on:
       - wordpress
     networks:
       - igo_net
-    restart : on-failure
+    restart : always
   redis :
     container_name: redis
     build:
@@ -65,7 +65,7 @@ services:
       - .env
     networks:
       - igo_net
-    restart : on-failure
+    restart : always
   adminer :
     container_name : adminer
     build :
@@ -78,7 +78,7 @@ services:
       - wordpress:/var/www/html
     networks :
       - igo_net
-    restart : on-failure
+    restart : always
   website :
     container_name : website
     build :
@@ -91,7 +91,7 @@ services:
       - wordpress:/var/www/html
     networks :
       - igo_net
-    restart : on-failure
+    restart : always
   cadvisor:
     container_name: cadvisor
     build:
@@ -106,7 +106,7 @@ services:
       - "8090:8090"
     networks:
       - igo_net
-    restart: on-failure
+    restart: always
 volumes:
   wordpress:
     driver: local
