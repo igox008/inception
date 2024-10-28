@@ -10,4 +10,4 @@ RUN openssl req -x509 -newkey rsa:4096 \
 
 COPY ./conf/config.conf /etc/nginx/sites-available/default
 
-CMD ["nginx", "-g", "deamon off;"]
+CMD ["nginx", "-g", "daemon off;"]
