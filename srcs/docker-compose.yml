@@ -106,7 +106,7 @@ services:
       - "8090:8090"
     networks:
       - igo_net
-    restart: always
+    restart: on-failure
 volumes:
   wordpress:
     driver: local
