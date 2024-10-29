@@ -112,13 +112,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/igo/data/wordpress
+      device: /home/alaassir/data/wordpress
       o: bind
   mariadb:
     driver: local
     driver_opts:
       type: none
-      device: /home/igo/data/mariadb
+      device: /home/alaassir/data/mariadb
       o: bind
 
 networks:

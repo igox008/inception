@@ -1,7 +1,7 @@
 
 all :
-	@mkdir -p /home/igo/data/mariadb
-	@mkdir -p /home/igo/data/wordpress
+	@mkdir -p /home/alaassir/data/mariadb
+	@mkdir -p /home/alaassir/data/wordpress
 	@docker compose -f ./srcs/docker-compose.yml up --build
 
 clean:
@@ -9,6 +9,6 @@ clean:
 
 fclean: clean
 	@docker system prune -af --volumes
-	@rm -rf /home/igo/data/mariadb/* /home/igo/data/wordpress/*
+	@rm -rf /home/alaassir/data/mariadb/* /home/alaassir/data/wordpress/*
 
 re: fclean all
